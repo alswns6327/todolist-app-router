@@ -20,11 +20,15 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { computed } from 'vue';
 import TodoItem from './TodoItem.vue';
 
-const todoList = inject('todoList');
-const {fetchTodoList} = inject('actions');
+import {useTodoListStore} from '@/stores/todoList';
+
+const todoStore = useTodoListStore();
+
+const {fetchTodoList} = todoStore;
+const todoList = computed(()=>todoStore.todoList);
 
 </script>
 

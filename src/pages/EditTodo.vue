@@ -29,10 +29,15 @@
 </template>
 
 <script setup>
-import { inject, reactive } from 'vue';
+import { computed, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-const {updateTodo} = inject('actions');
-const todoList = inject('todoList');
+import {useTodoListStore} from '@/stores/todoList';
+
+const todoStore = useTodoListStore();
+
+const {updateTodo} = todoStore;
+
+const todoList = computed(()=>todoStore.todoList);
 
 const currentRoute = useRoute();
 const router = useRouter();

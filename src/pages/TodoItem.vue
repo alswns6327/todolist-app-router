@@ -16,15 +16,18 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
 import { useRouter } from 'vue-router';
+import {useTodoListStore} from '@/stores/todoList';
+
+const todoStore = useTodoListStore();
+
+const {deleteTodo, toggleDone} = todoStore;
 
 defineProps({
     todoItem : {Type : Object, required : true}
 });
 
 const router = useRouter();
-const {deleteTodo, toggleDone} = inject('actions');
 </script>
 
 <style scoped>

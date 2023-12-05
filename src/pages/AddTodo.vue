@@ -25,12 +25,16 @@
 </template>
 
 <script setup>
-import { inject, reactive } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import {useTodoListStore} from '@/stores/todoList';
 
 const router = useRouter();
 const todoItem = reactive({todo : '', desc : ''});
-const { addTodo } = inject('actions');
+
+const todoStore = useTodoListStore();
+
+const {addTodo} = todoStore;
 
 const successCallback = () => {
     alert("저장완료");
