@@ -35,16 +35,14 @@ import {useTodoListStore} from '@/stores/todoList';
 
 const todoStore = useTodoListStore();
 
-const {updateTodo} = todoStore;
-
-const todoList = computed(()=>todoStore.todoList);
+const {todoList, updateTodo} = todoStore;
 
 const currentRoute = useRoute();
 const router = useRouter();
 
 const {id} = currentRoute.params;
 
-const matchItem = todoList.value.find(todo=> todo.id === parseInt(id));
+const matchItem = todoList.find(todo=> todo.id === parseInt(id));
 
 if(!matchItem){
     alert("매칭되는 ID를 가진 todo가 없습니다.");
